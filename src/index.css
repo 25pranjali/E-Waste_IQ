@@ -1,0 +1,96 @@
+:root {
+  --primary: #00796b; /* Sustainable Teal */
+  --primary-light: #48a999;
+  --primary-dark: #004c40;
+  --secondary: #5d4037; /* Earthy Brown */
+  --bg-light: #ffffff;
+  --bg-dark: #001a1a; /* Dark Teal depth */
+  --text-light: #263238;
+  --text-dark: #e0f2f1;
+  --accent: #ff6f00; /* Deep Orange/Amber */
+  --glass: rgba(255, 255, 255, 0.4);
+  --glass-dark: rgba(0, 38, 38, 0.4);
+  --glass-border: rgba(0, 121, 107, 0.1);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--bg-light);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(56, 142, 60, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(255, 179, 0, 0.05) 0px, transparent 50%);
+  color: var(--text-light);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: var(--transition);
+}
+
+body.dark {
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(56, 142, 60, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(255, 179, 0, 0.1) 0px, transparent 50%);
+  color: var(--text-dark);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 20px;
+  transition: var(--transition);
+}
+
+body.dark .glass-card {
+  background: var(--glass-dark);
+  border-color: var(--glass-border-dark);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: var(--transition);
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
