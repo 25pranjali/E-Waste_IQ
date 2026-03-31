@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import heroImg from '../assets/hero.png';
 
 const Home = () => {
   return (
@@ -18,7 +19,7 @@ const Home = () => {
           </div>
           <div className="hero-visual">
             <div className="glass-blob"></div>
-            <img src="/src/assets/hero.png" alt="E-Waste Recycling Illustration" className="hero-img" />
+            <img src={heroImg} alt="E-Waste Recycling Illustration" className="hero-img" />
           </div>
         </div>
       </section>

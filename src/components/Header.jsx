@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,13 +25,18 @@ const Header = () => {
         <Link to="/" className="logo">
           <span className="logo-icon">🌿</span> E-Waste IQ
         </Link>
-        <nav className="nav">
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/impact">Impact</Link>
-          <Link to="/recycle">Recycle</Link>
-          <Link to="/centers">Centers</Link>
-          <Link to="/quiz">Quiz</Link>
+        <button className={`menu-toggle ${isMenuOpen ? 'open' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
+          <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+          <Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link>
+          <Link to="/impact" onClick={() => setIsMenuOpen(false)}>Impact</Link>
+          <Link to="/recycle" onClick={() => setIsMenuOpen(false)}>Recycle</Link>
+          <Link to="/centers" onClick={() => setIsMenuOpen(false)}>Centers</Link>
+          <Link to="/quiz" onClick={() => setIsMenuOpen(false)}>Quiz</Link>
         </nav>
         <button onClick={toggleTheme} className="theme-toggle">
           {isDark ? '☀️' : '🌙'}
@@ -84,9 +90,46 @@ const Header = () => {
         .theme-toggle {
           font-size: 1.2rem;
           padding: 5px;
+          z-index: 1001;
         }
+
+        .menu-toggle {
+          display: none;
+          flex-direction: column;
+          gap: 6px;
+          z-index: 1001;
+        }
+        .menu-toggle span {
+          display: block;
+          width: 30px;
+          height: 3px;
+          background: var(--primary);
+          border-radius: 3px;
+          transition: var(--transition);
+        }
+        .menu-toggle.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .menu-toggle.open span:nth-child(2) { opacity: 0; }
+        .menu-toggle.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
         @media (max-width: 768px) {
-          .nav { display: none; }
+          .menu-toggle { display: flex; }
+          .nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-light);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            transition: 0.5s cubic-bezier(0.8, 0, 0.2, 1);
+            z-index: 1000;
+          }
+          body.dark .nav { background: var(--bg-dark); }
+          .nav.open { right: 0; }
+          .nav a { font-size: 1.5rem; }
         }
       `}</style>
     </header>
