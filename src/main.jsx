@@ -7,7 +7,7 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/E-Waste_IQ">
       <App />
     </BrowserRouter>
   </StrictMode>,
